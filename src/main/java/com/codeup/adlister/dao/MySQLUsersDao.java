@@ -3,7 +3,6 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
-import javax.swing.*;
 import java.sql.*;
 
 public class MySQLUsersDao implements Users {
@@ -13,9 +12,9 @@ public class MySQLUsersDao implements Users {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUsername(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUsername(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -61,14 +60,7 @@ public class MySQLUsersDao implements Users {
             rs.next();
             return rs.getInt(1);
         } catch (SQLException e) {
-            if (e.getMessage().contains("Duplicate entry")) {
-                JOptionPane.showMessageDialog(null, "Duplicate User Error");
-
-                return -1;
-            }
-            else {
-                throw new RuntimeException("Error creating new user", e);
-            }
+            throw new RuntimeException("Error creating new user", e);
         }
     }
 
@@ -77,10 +69,10 @@ public class MySQLUsersDao implements Users {
             return null;
         }
         return new User(
-            rs.getInt("id"),
-            rs.getString("username"),
-            rs.getString("email"),
-            rs.getString("password")
+                rs.getInt("id"),
+                rs.getString("username"),
+                rs.getString("email"),
+                rs.getString("password")
         );
     }
 

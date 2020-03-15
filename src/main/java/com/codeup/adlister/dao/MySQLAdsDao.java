@@ -60,7 +60,7 @@ public class MySQLAdsDao implements Ads {
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, ad.getUserId());
             stmt.setString(2, ad.getTitle());
-
+            stmt.setString(3, ad.getDescription());
             stmt.setDouble(4, ad.getPrice());
 
 
@@ -82,15 +82,15 @@ public class MySQLAdsDao implements Ads {
     }
 
     private static Ad extractAd(ResultSet rs) throws SQLException {
-            return new Ad(
-                    rs.getInt(1),
-                    rs.getInt(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    getCategoryByAdId(rs.getInt(5)),
-                    //1?
-                    rs.getDouble(6)
-            );
+        return new Ad(
+                rs.getInt(1),
+                rs.getInt(2),
+                rs.getString(3),
+                rs.getString(4),
+                getCategoryByAdId(rs.getInt(5)),
+                //1?
+                rs.getDouble(6)
+        );
     }
 
     private static List<String> getCategoryByAdId(int ad_id) throws SQLException {
@@ -127,20 +127,18 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving ad", e);
         }
     }
+
     @Override
-    public List<Ad> getUserAds(int id){
+    public List<Ad> userAds(int user_id) {
         PreparedStatement stmt;
         try {
             stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = ?");
-            stmt.setInt(1, id);
+            stmt.setLong(1, user_id);
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving user ads.", e);
         }
     }
-
-
-
 
 }

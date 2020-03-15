@@ -22,7 +22,7 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
+                .forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -33,10 +33,10 @@ public class CreateAdServlet extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("price"));
 
         Ad ad = new Ad(
-            user.getId(),
-            title,
-            description,
-            price
+                user.getId(),
+                title,
+                description,
+                price
         );
 
         int newAdId = DaoFactory.getAdsDao().insert(ad);

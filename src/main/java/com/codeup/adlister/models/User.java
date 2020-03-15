@@ -2,14 +2,12 @@ package com.codeup.adlister.models;
 
 import com.codeup.adlister.util.Password;
 
-import java.io.File;
-
 public class User {
     private int id;
     private String username;
     private String email;
     private String password;
-//    private String city;
+    //    private String city;
 //    private String contact;
 //    private File icon;
     public User() {}

@@ -10,7 +10,7 @@
 </head>
 <body>
 <jsp:include page="../partials/navbar.jsp" />
-<jsp:include page="../partials/dropdown.jsp" />
+<%--<jsp:include page="../partials/dropdown.jsp" />--%>
 <div class="container">
     <h1 class="text-center mt-5">Here Are all the ads!</h1>
     <div class="row">

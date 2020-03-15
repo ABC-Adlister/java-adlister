@@ -12,9 +12,12 @@
 
     <div class="container">
         <h1 class="text-center mt-5">Welcome, ${sessionScope.user.username}!</h1>
-        <h3 class="text-center mt-5 text-muted">${sessionScope.user.email}!</h3>
+        <h3 class="text-center mt-2 text-muted">${sessionScope.user.email}!</h3>
     </div>
-    <div class="container-fluid d-flex flex-wrap overflow-auto">
+    <div class="container">
+        <h2 class="text-center mt-5">${sessionScope.user.username}'s Listings:</h2>
+
+        <div class="row">
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-12 col-md-4 mb-1">
@@ -44,6 +47,9 @@
 
         </div>
     </c:forEach>
+        </div>
+
     </div>
+<br>
 </body>
 </html>
